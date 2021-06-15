@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cky.dao.MpCommonMapper">
+  <resultMap id="BaseResultMap" type="com.cky.entity.MpCommon">
+    <!--
+    resultMap语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="insert_user" jdbcType="VARCHAR" property="insertUser" />
+    <result column="modify_user" jdbcType="VARCHAR" property="modifyUser" />
+    <result column="insert_date" jdbcType="TIMESTAMP" property="insertDate" />
+    <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    sql语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    id, p_id, insert_user, modify_user, insert_date, modify_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    select语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from mp_common
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="finAll" resultType="com.cky.entity.MpCommon">
+    select <include refid="Base_Column_List"/>
+    from mp_common
+    where 1=1;
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    delete语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    delete from mp_common
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cky.entity.MpCommon">
+    <!--
+    insert语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    insert into mp_common (id, p_id, insert_user, 
+      modify_user, insert_date, modify_date
+      )
+    values (#{id,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{insertUser,jdbcType=VARCHAR}, 
+      #{modifyUser,jdbcType=VARCHAR}, #{insertDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cky.entity.MpCommon">
+    <!--
+    insert语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    insert into mp_common
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="insertUser != null">
+        insert_user,
+      </if>
+      <if test="modifyUser != null">
+        modify_user,
+      </if>
+      <if test="insertDate != null">
+        insert_date,
+      </if>
+      <if test="modifyDate != null">
+        modify_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="insertUser != null">
+        #{insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null">
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cky.entity.MpCommon">
+    <!--
+    update语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    update mp_common
+    <set>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="insertUser != null">
+        insert_user = #{insertUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUser != null">
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null">
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null">
+        modify_date = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cky.entity.MpCommon">
+    <!--
+    update语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:47:25 CST 2021
+    -->
+    update mp_common
+    set p_id = #{pId,jdbcType=INTEGER},
+      insert_user = #{insertUser,jdbcType=VARCHAR},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      modify_date = #{modifyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

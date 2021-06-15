@@ -1,0 +1,16 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: micropersonnel-test1-web
+  boot:
+    admin:
+      client:
+        url: http://localhost:21000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20000/eureka
+

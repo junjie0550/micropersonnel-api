@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: micropersonnel-api-config-eureka
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  boot:
+    admin:
+      client:
+        url: http://localhost:21000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20000/eureka
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    lease-renewal-interval-in-seconds: 20
+server:
+  port: 20000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+#logging:
+#  file:
+#    path: ../cloud-logs
+

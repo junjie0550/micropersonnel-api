@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cky.dao.MpUserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.cky.entity.MpUserInfo">
+    <!--
+    resultMap语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="user_no" jdbcType="INTEGER" property="userNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="id_card" jdbcType="CHAR" property="idCard" />
+    <result column="wedlock" jdbcType="CHAR" property="wedlock" />
+    <result column="nation_id" jdbcType="INTEGER" property="nationId" />
+    <result column="native_place" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="politic_id" jdbcType="INTEGER" property="politicId" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    sql语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    id, user_no, name, gender, birthday, id_card, wedlock, nation_id, native_place, politic_id,
+    email, phone, address
+  </sql>
+
+  <select id="findAll"  resultMap="BaseResultMap">
+    <!--
+    select语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from mp_user_info
+    where 1 = 1
+  </select>
+  <select id="selectByPhone"  parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+    from mp_user_info
+    where phone= #{phone};
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--
+    select语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from mp_user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    delete语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    delete from mp_user_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cky.entity.MpUserInfo">
+    <!--
+    insert语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    insert into mp_user_info (id, user_no, name,
+      gender, birthday, id_card, wedlock,
+      nation_id, native_place, politic_id,
+      email, phone, address
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userNo,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{gender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, #{idCard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR},
+      #{nationId,jdbcType=INTEGER}, #{nativePlace,jdbcType=VARCHAR}, #{politicId,jdbcType=INTEGER},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cky.entity.MpUserInfo">
+    <!--
+    insert语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    insert into mp_user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userNo != null">
+        user_no,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="wedlock != null">
+        wedlock,
+      </if>
+      <if test="nationId != null">
+        nation_id,
+      </if>
+      <if test="nativePlace != null">
+        native_place,
+      </if>
+      <if test="politicId != null">
+        politic_id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userNo != null">
+        #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=CHAR},
+      </if>
+      <if test="wedlock != null">
+        #{wedlock,jdbcType=CHAR},
+      </if>
+      <if test="nationId != null">
+        #{nationId,jdbcType=INTEGER},
+      </if>
+      <if test="nativePlace != null">
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="politicId != null">
+        #{politicId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cky.entity.MpUserInfo">
+    <!--
+    update语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    update mp_user_info
+    <set>
+      <if test="userNo != null">
+        user_no = #{userNo,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=CHAR},
+      </if>
+      <if test="wedlock != null">
+        wedlock = #{wedlock,jdbcType=CHAR},
+      </if>
+      <if test="nationId != null">
+        nation_id = #{nationId,jdbcType=INTEGER},
+      </if>
+      <if test="nativePlace != null">
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="politicId != null">
+        politic_id = #{politicId,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cky.entity.MpUserInfo">
+    <!--
+    update语句操作
+ 作者： Wales-YuThu Jun 10 15:05:49 CST 2021
+    -->
+    update mp_user_info
+    set user_no = #{userNo,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      id_card = #{idCard,jdbcType=CHAR},
+      wedlock = #{wedlock,jdbcType=CHAR},
+      nation_id = #{nationId,jdbcType=INTEGER},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      politic_id = #{politicId,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

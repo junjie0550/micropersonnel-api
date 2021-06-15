@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cky.dao.MpPictureMapper">
+  <resultMap id="BaseResultMap" type="com.cky.entity.MpPicture">
+    <!--
+    resultMap语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cky.entity.MpPicture">
+    <!--
+    resultMap语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    <result column="picture" jdbcType="LONGVARCHAR" property="picture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    sql语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    id, p_id
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+    sql语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    <!--
+    select语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mp_picture
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="finAll" resultType="com.cky.entity.MpPicture">
+    select <include refid="Base_Column_List"/>
+    from mp_picture
+    where 1=1;
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--
+    delete语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    delete from mp_picture
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cky.entity.MpPicture">
+    <!--
+    insert语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    insert into mp_picture (id, p_id, picture
+      )
+    values (#{id,jdbcType=VARCHAR}, #{pId,jdbcType=INTEGER}, #{picture,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cky.entity.MpPicture">
+    <!--
+    insert语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    insert into mp_picture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cky.entity.MpPicture">
+    <!--
+    update语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    update mp_picture
+    <set>
+      <if test="pId != null">
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cky.entity.MpPicture">
+    <!--
+    update语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    update mp_picture
+    set p_id = #{pId,jdbcType=INTEGER},
+      picture = #{picture,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cky.entity.MpPicture">
+    <!--
+    update语句操作
+ 作者： DESKTOP-E357TIFThu Jun 10 20:56:58 CST 2021
+    -->
+    update mp_picture
+    set p_id = #{pId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: micropersonnel-api-config-monitor
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:20000/eureka
+server:
+  port: 21000
